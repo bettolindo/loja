@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class TabletStore {
+    public static void main(String[] args) {
+        int numLojas = 5;
+        Loja[] lojas = new Loja[numLojas];
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        for (int i = 0; i < numLojas; i++) {
+            System.out.println("Digite o nome da loja " + (i + 1) + ":");
+            String nome = scanner.nextLine();
+            
+            System.out.println("Digite o telefone da loja " + (i + 1) + ":");
+            String telefone = scanner.nextLine();
+            
+            System.out.println("Digite o preço do tablet na loja " + (i + 1) + ":");
+            double precoTablet = scanner.nextDouble();
+            scanner.nextLine(); // Consumir a quebra de linha
+            
+            lojas[i] = new Loja(nome, telefone, precoTablet);
+        }
+        
+        double somaPrecos = 0.0;
+        for (Loja loja : lojas) {
+            somaPrecos += loja.getPrecoTablet();
+        }
+        double mediaPrecos = somaPrecos / numLojas;
+        
+        System.out.println("Lojas cadastradas e seus preços:");
+        for (Loja loja : lojas) {
+            System.out.println("Nome: " + loja.getNome() + ", Telefone: " + loja.getTelefone() + ", Preço: " + loja.getPrecoTablet());
+        }
+        
+        System.out.println("Média de preços: " + mediaPrecos);
+        
+        scanner.close();
+    }
+}
+
+class Loja {
+    private String nome;
+    private String telefone;
+    private double precoTablet;
+    
+    public Loja(String nome, String telefone, double precoTablet) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.precoTablet = precoTablet;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+    
+    public String getTelefone() {
+        return telefone;
+    }
+    
+    public double getPrecoTablet() {
+        return precoTablet;
+    }
+}
